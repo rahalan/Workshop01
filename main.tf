@@ -32,9 +32,10 @@ resource "azurerm_virtual_network" "vnet" {
   address_space = var.vnetAdressSpace
 }
 
-resource "azurerm_subnet" "subnet01" {
-  name                 = "subnet01"
+resource "azurerm_subnet" "subnet" {
+  for_each             = var.subnets
+  name                 = each.value.name
+  address_prefixes     = [each.value.address]
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = ["10.1.0.0/24"]
 }

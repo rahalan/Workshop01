@@ -11,3 +11,10 @@ variable "vnetAdressSpace" {
   description = "adress space for vnet"
   type = list(string)
 }
+
+variable "subnets" {
+  type = map(object({
+    name = string
+    address = string
+  }))
+}
