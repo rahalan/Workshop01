@@ -5,7 +5,7 @@ terraform {
       version = "~>3.34.0"
     }
   }
-  required_version = "~> 1.0.0"
+  required_version = "~> 1.3.6"
   backend "azurerm" {
     resource_group_name  = var.state_resource_group_name
     storage_account_name = var.state_storage_account_name
