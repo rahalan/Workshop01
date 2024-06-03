@@ -9,4 +9,8 @@ subnets = {
     name    = "subnet02"
     address = "10.1.1.0/24"
   }
+  "subnet03" = {
+    name   = "subnet03"
+    address = "10.1.2.0/24"
+  }
 }
