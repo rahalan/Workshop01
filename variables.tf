@@ -1,5 +1,5 @@
 variable "location" {
-  default = "East US"
+  default     = "East US"
   description = "Azure region for the resources"
 }
 
@@ -9,12 +9,12 @@ variable "prefix" {
 
 variable "vnetAdressSpace" {
   description = "adress space for vnet"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "subnets" {
   type = map(object({
-    name = string
+    name    = string
     address = string
   }))
 }
