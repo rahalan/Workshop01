@@ -45,8 +45,8 @@ jobs:
 
       - name: Terraform plan
         id: plan
-        run: terraform plan -no-color
+        run: terraform plan -var-file .\prod.tfvars -no-color
 
       - name: Terraform apply
         id: apply
-        run: terraform apply -auto-approve
+        run: terraform apply -var-file .\prod.tfvars -auto-approve
