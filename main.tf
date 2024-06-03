@@ -7,9 +7,9 @@ terraform {
   }
   required_version = "1.8.3"
   backend "azurerm" {
-      resource_group_name  = "rg-rahalan" # change to your rg name
-      storage_account_name = "tfstate111112" # change to your storage account name
-      container_name       = "tfstate" # change to your container name
+      resource_group_name  = var.state_resource_group_name
+      storage_account_name = var.state_storage_account_name
+      container_name       = "tfstate"
       key                  = "terraform.tfstate"
   }
 }
