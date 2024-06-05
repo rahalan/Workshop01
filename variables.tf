@@ -7,14 +7,18 @@ variable "prefix" {
   description = "prefix of the deployment stage"
 }
 
-variable "vnetAdressSpace" {
-  description = "adress space for vnet"
-  type        = list(string)
+variable "resource_group_name" {
+  description = "name of the resource group"
 }
 
-variable "subnets" {
-  type = map(object({
-    name    = string
-    address = string
-  }))
-}
+# variable "vnetAdressSpace" {
+#   description = "adress space for vnet"
+#   type        = list(string)
+# }
+
+# variable "subnets" {
+#   type = map(object({
+#     name    = string
+#     address = string
+#   }))
+# }
