@@ -33,11 +33,7 @@ jobs:
       - name: Terraform init
         id: init
         run: |
-          set -a 
-          source .env.backend
-          terraform init \
-            -backend-config="resource_group_name=$TF_VAR_state_resource_group_name" \
-            -backend-config="storage_account_name=$TF_VAR_state_storage_account_name"
+          terraform init -no-color -input=false -backend-config=backend-dev.hcl
 
       - name: Terraform validate
         id: validate
