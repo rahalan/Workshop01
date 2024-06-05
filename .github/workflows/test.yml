@@ -2,9 +2,11 @@ on:
   workflow_dispatch
 
 jobs:
-  terraform:
-    name: 'Terraform'
+  deploy-dev:
+    name: 'Deploy to development environment'
     runs-on: ubuntu-latest
+    environment:
+      name: dev
     env:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
@@ -33,15 +35,15 @@ jobs:
       - name: Terraform init
         id: init
         run: |
-          terraform init -no-color -input="false" -backend-config="backend-dev.hcl"
+          terraform init -input="false" -backend-config="backend-dev.hcl"
 
       - name: Terraform validate
         id: validate
-        run: terraform validate -no-color
+        run: terraform validate
 
       - name: Terraform plan
         id: plan
-        run: terraform plan -var-file ./dev.tfvars -no-color
+        run: terraform plan -var-file ./dev.tfvars
 
       - name: Terraform apply
         id: apply
