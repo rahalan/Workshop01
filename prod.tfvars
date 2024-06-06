@@ -1,6 +1,6 @@
 prefix              = "prod"
 resource_group_name = "rg-rahalan-prod"
-vnetAdressSpace = ["10.1.0.0/16"]
+vnetAdressSpace     = ["10.1.0.0/16"]
 # subnets = {
 #   "subnet01" = {
 #     name    = "subnet01"
