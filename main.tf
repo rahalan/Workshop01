@@ -66,7 +66,7 @@ resource "azurerm_monitor_diagnostic_setting" "vnet-diagnostics" {
 }
 
 resource "azurerm_key_vault" "kv" {
-  name                = "kv-${var.prefix}"
+  name                = "kv-${var.prefix}349787"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
   sku_name            = "standard"
