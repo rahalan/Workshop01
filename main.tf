@@ -48,13 +48,13 @@ resource "azurerm_monitor_diagnostic_setting" "vnet-diagnostics" {
   target_resource_id         = azurerm_virtual_network.vnet.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.law.id
 
-  log {
-    category = "VM protection alerts"
+  # log {
+  #   category = "VM protection alerts"
 
-    retention_policy {
-      enabled = false
-    }
-  }
+  #   retention_policy {
+  #     enabled = false
+  #   }
+  # }
 
   metric {
     category = "AllMetrics"
