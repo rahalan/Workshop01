@@ -44,8 +44,8 @@ resource "azurerm_log_analytics_workspace" "law" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "vnet-diagnostics" {
-  name               = "vnet-diagnostics"
-  target_resource_id = azurerm_virtual_network.vnet.id
+  name                       = "vnet-diagnostics"
+  target_resource_id         = azurerm_virtual_network.vnet.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.law.id
 
   log {
