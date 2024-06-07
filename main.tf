@@ -42,3 +42,25 @@ resource "azurerm_log_analytics_workspace" "law" {
   sku                 = "PerGB2018"
   retention_in_days   = 30
 }
+
+resource "azurerm_monitor_diagnostic_setting" "vnet-diagnostics" {
+  name               = "vnet-diagnostics"
+  target_resource_id = azurerm_virtual_network.vnet.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.law.id
+
+  log {
+    category = "VM protection alerts"
+
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  metric {
+    category = "AllMetrics"
+
+    retention_policy {
+      enabled = false
+    }
+  }
+}
