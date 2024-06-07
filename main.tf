@@ -34,3 +34,11 @@ resource "azurerm_subnet" "subnets" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = each.value.address
 }
+
+resource "azurerm_log_analytics_workspace" "law" {
+  name                = "law-${var.prefix}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+}
