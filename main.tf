@@ -49,7 +49,7 @@ resource "azurerm_monitor_diagnostic_setting" "vnet-diagnostics" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.law.id
 
   # log {
-  #   category = "allLogs" 
+  #   category = "allLogs"
 
   #   retention_policy {
   #     enabled = false
