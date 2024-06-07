@@ -16,9 +16,9 @@ variable "vnetAdressSpace" {
   type        = list(string)
 }
 
-# variable "subnets" {
-#   type = map(object({
-#     name    = string
-#     address = string
-#   }))
-# }
+variable "subnets" {
+  type = map(object({
+    name    = string
+    address = [string]
+  }))
+}
