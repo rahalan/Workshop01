@@ -137,6 +137,6 @@ resource "azurerm_virtual_machine" "vm" {
     admin_password = data.azurerm_key_vault_secret.admin-pw.value
   }
   os_profile_windows_config {
-
+    provision_vm_agent = true
   }
 }
