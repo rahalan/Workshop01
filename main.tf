@@ -108,7 +108,7 @@ resource "azurerm_network_interface" "nic" {
 
   ip_configuration {
     name                          = "ipconfig1"
-    subnet_id                     = azurerm_subnet.subnets[var.subnets[0].key].id
+    subnet_id                     = azurerm_subnet.subnets["subnet01"].id
     private_ip_address_allocation = "Dynamic"
   }
 }
