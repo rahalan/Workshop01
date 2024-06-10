@@ -101,42 +101,43 @@ data "azurerm_key_vault_secret" "admin-pw" {
   key_vault_id = azurerm_key_vault.kv.id
 }
 
-# resource "azurerm_network_interface" "nic" {
-#   name                = "nic-${var.prefix}"
-#   location            = var.location
-#   resource_group_name = azurerm_resource_group.rg.name
+resource "azurerm_network_interface" "nic" {
+  name                = "nic-${var.prefix}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
 
-#   ip_configuration {
-#     name                          = "ipconfig1"
-#     subnet_id                     = azurerm_subnet.subnets["subnet01"].id
-#     private_ip_address_allocation = "Dynamic"
-#   }
-# }
+  ip_configuration {
+    name                          = "ipconfig1"
+    subnet_id                     = azurerm_subnet.subnets["subnet01"].id
+    private_ip_address_allocation = "Dynamic"
+  }
+}
 
-# resource "azurerm_virtual_machine" "vm" {
-#   name                  = "vm-${var.prefix}"
-#   location              = var.location
-#   resource_group_name   = azurerm_resource_group.rg.name
-#   network_interface_ids = [azurerm_network_interface.nic.id]
-#   vm_size               = "Standard_DS1_v2"
-#   storage_image_reference {
-#     publisher = "MicrosoftWindowsServer"
-#     offer     = "WindowsServer"
-#     sku       = "2022-datacenter-g2"
-#     version   = "latest"
-#   }
-#   storage_os_disk {
-#     name              = "osdisk"
-#     caching           = "ReadWrite"
-#     create_option     = "FromImage"
-#     managed_disk_type = "Standard_LRS"
-#   }
-#   os_profile {
-#     computer_name  = "host01"
-#     admin_username = "testadmin"
-#     admin_password = data.azurerm_key_vault_secret.admin-pw.value
-#   }
-#   os_profile_windows_config {
-#     provision_vm_agent = true
-#   }
-# }
+resource "azurerm_virtual_machine" "vm" {
+  name                  = "vm-${var.prefix}"
+  location              = var.location
+  resource_group_name   = azurerm_resource_group.rg.name
+  network_interface_ids = [azurerm_network_interface.nic.id]
+  vm_size               = "Standard_DS1_v2"
+  delete_os_disk_on_termination = true
+  storage_image_reference {
+    publisher = "MicrosoftWindowsServer"
+    offer     = "WindowsServer"
+    sku       = "2022-datacenter-g2"
+    version   = "latest"
+  }
+  storage_os_disk {
+    name              = "osdisk"
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "Standard_LRS"
+  }
+  os_profile {
+    computer_name  = "host01"
+    admin_username = "testadmin"
+    admin_password = data.azurerm_key_vault_secret.admin-pw.value
+  }
+  os_profile_windows_config {
+    provision_vm_agent = true
+  }
+}
